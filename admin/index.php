@@ -22,7 +22,7 @@ if (!isset($_SESSION['username'])) {
         <nav class="navbar-expand-sm navbar-light bg-light">
             <div class="container-fluid">
                 <a href="#" class="navbar-brand">MyApp</a>
-                <button type="button" class="navbar-toggler" data-bstoggle="collapse" data-bs-target="#navbarSupportedContent" ariacontrols="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -32,23 +32,21 @@ if (!isset($_SESSION['username'])) {
                         </li>
                     </ul>
                     <?php
-
                     if (!isset($_SESSION['username'])) {
                     ?>
                         <a href="login.php" class="nav-link btn btn-primary btn-sm d-flex justify-content-end" style="color:white;" aria-current="page">Login</a>
                     <?php } else { ?>
                         <div class="dropdown">
-                            <button type="button" class="btn btn-secondary dropdowntoggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <b><?php echo $_SESSION['nmUser']; ?></b>
                             </button>
-                            <ul class="dropdown-menu" arialabelledby="dropdownMenuButton1">
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a href="../" class="dropdown-item">Halaman Utama</a></li>
                                 <li><a href="../logout.php" class="dropdown-item">Logout</a></li>
                             </ul>
                         </div>
                     <?php } ?>
                 </div>
-
             </div>
         </nav>
         <div class="row">
@@ -59,17 +57,18 @@ if (!isset($_SESSION['username'])) {
         <nav style="--bs-breadcrumb-divider:url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <li class="breadcrumb-item active" ariacurrent="page">Hero</li>
+                <li class="breadcrumb-item active" aria-current="page">Hero</li>
             </ol>
         </nav>
         <div class="row">
             <div class="col">
                 <?php if (isset($_GET['gagal'])) { ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong><i class="fas fa-exclamationtriangle"></i></strong> <?= $_SESSION['gagalposting']; ?>
-                        <button type="button" cla ss="btn-close" data-bsdismiss="alert" aria-label="Close"></button>
-                    </div> <?php } ?>
-                <a href="#" class="btn btn-primary btn-sm float-end mb-2" data-bs-toggle="modal" data-bs-target="#tambahdata"><i class="fas faplus"></i>Tambah data</a>
+                        <strong><i class="fas fa-exclamation-triangle"></i></strong> <?= $_SESSION['gagalposting']; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
+                <a href="#" class="btn btn-primary btn-sm float-end mb-2" data-bs-toggle="modal" data-bs-target="#tambahdata"><i class="fas fa-plus"></i> Tambah data</a>
             </div>
         </div>
         <table class="table table-striped table-sm mt-1" id="tabel">
@@ -108,30 +107,30 @@ if (!isset($_SESSION['username'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Buat Hero</h5>
-                    <button type="button" class="btn-close" data-bsdismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="konfigurasi.php" method="post" enctype="multipart/form-data">
                         <div class="row mb-3">
-                            <label for="judul" class="col-sm-3 col-formlabel">Judul</label>
+                            <label for="judul" class="col-sm-3 col-form-label">Judul</label>
                             <div class="col-sm-9">
                                 <input type="text" name="judul" class="form-control" required>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="deskripsi" class="col-sm-3 colform-label">Sub Judul</label>
+                            <label for="deskripsi" class="col-sm-3 col-form-label">Sub Judul</label>
                             <div class="col-sm-9">
                                 <textarea name="subjudul" id="subjudul" cols="5" rows="3" class="form-control" required></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="gambar" class="col-sm-3 col-formlabel">Gambar</label>
+                            <label for="gambar" class="col-sm-3 col-form-label">Gambar</label>
                             <div class="col-sm-9">
                                 <input type="file" name="gambar" class="form-control" id="gambar" required>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="status" class="col-sm-3 col-formlabel">Status</label>
+                            <label for="status" class="col-sm-3 col-form-label">Status</label>
                             <div class="col-sm-9">
                                 <select name="status" id="status" class="form-control">
                                     <option value="">Pilih</option>
@@ -156,7 +155,7 @@ if (!isset($_SESSION['username'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Edit Hero</h5>
-                    <button type="button" class="btn-close" data-bsdismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="konfigurasi.php" method="post" enctype="multipart/form-data">
@@ -167,7 +166,7 @@ if (!isset($_SESSION['username'])) {
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="deskripsi" class="col-sm-3 colform-label">Sub Judul</label>
+                            <label for="deskripsi" class="col-sm-3 col-form-label">Sub Judul</label>
                             <div class="col-sm-9">
                                 <textarea name="subjudul" id="subjudul_u" cols="5" rows="3" class="form-control"></textarea>
                             </div>
@@ -179,7 +178,7 @@ if (!isset($_SESSION['username'])) {
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="status" class="col-sm-3 col-formlabel">Status</label>
+                            <label for="status" class="col-sm-3 col-form-label">Status</label>
                             <div class="col-sm-9">
                                 <select name="status" id="status" class="form-control">
                                     <option value="">Pilih</option>
@@ -190,6 +189,7 @@ if (!isset($_SESSION['username'])) {
                         </div>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" id="idhero_u" name="idhero">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary" name="editposting">Edit</button>
                     </form>
@@ -204,10 +204,10 @@ if (!isset($_SESSION['username'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script>
         $(document).on('click', '.update', function(e){
-            var idPosting = $(this).attr("data-idPosting");
-            var judul = $(this).attr("data-judul");
-            var subjudul = $(this).attr("data-subjudul");
-            $('#idPosting_u').val(idPosting);
+            var idhero = $(this).data("idhero");
+            var judul = $(this).data("judul");
+            var subjudul = $(this).data("subjudul");
+            $('#idhero_u').val(idhero);
             $('#judul_u').val(judul);
             $('#subjudul_u').val(subjudul);
         });
@@ -222,5 +222,4 @@ if (!isset($_SESSION['username'])) {
         });
     </script>
 </body>
-
 </html>

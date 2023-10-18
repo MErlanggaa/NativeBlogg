@@ -28,13 +28,21 @@ if (isset($_GET['delete'])) {
     header("location:index.php"); 
 } 
 
-if (isset($_POST['editposting'])) { 
-    $judul = $_POST['judul']; 
-    $subjudul = $_POST['subjudul']; 
+if (isset($_POST['editposting'])) {
+    $idhero = $_POST['idhero'];
+    $judul = $_POST['judul'];
+    $subjudul = $_POST['subjudul'];
     $status = $_POST['status'];
-    $namagambar = $_FILES['gambar']['name']; 
-    $file_tmp = $_FILES['gambar']['tmp_name']; 
-    move_uploaded_file($file_tmp, '../assets/img/' . $namagambar); 
-    $koneksi->query("UPDATE hero SET judul='$judul',subjudul='$subjudul', gambar='$namagambar', status='$status' WHERE judul='$judul'"); 
+
+    if (!empty($_FILES['gambar']['name'])) {
+        $namagambar = $_FILES['gambar']['name'];
+        $file_tmp = $_FILES['gambar']['tmp_name'];
+        
+        move_uploaded_file($file_tmp, '../assets/img/' . $namagambar);
+        $koneksi->query("UPDATE hero SET judul='$judul', subjudul='$subjudul', gambar='$namagambar', status='$status' WHERE idhero='$idhero'");
+    } else {
+        $koneksi->query("UPDATE hero SET judul='$judul', subjudul='$subjudul', status='$status' WHERE idhero='$idhero'");
+    }
     header("location:index.php");
 }
+
